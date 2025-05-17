@@ -44,7 +44,13 @@ export function toFormData(data: Record<string, any>): FormData {
   return formData;
 }
 
+function capitalizeFirst(str: string) {
+  if (!str) return "";
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+
 export function replaceCharsRegex(str: string, target: string, replacement: string): string {
   const regex = new RegExp(target, "g"); 
-  return str.replace(regex, replacement);
+  return capitalizeFirst(str.replace(regex, replacement));
 }

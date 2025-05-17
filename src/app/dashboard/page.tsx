@@ -171,7 +171,7 @@ function ApptsList({
                         <div className='flex-row-between font-medium mb-2'> 
                             {appt.name}
                             { appt.datetime &&  
-                                <Badge className='text-[0.7rem] bg-blue-background text-blue-primary-text py-0'> 
+                                <Badge className='text-[0.78rem] bg-blue-background text-blue-primary-text py-0'> 
                                     {format(appt.datetime, 'p')} 
                                 </Badge>
                             } 
@@ -284,7 +284,7 @@ export default function Dashboard() {
                 <div className='grid min-[1200px]:grid-cols-[1fr_0fr] gap-20 w-fit'> 
                     <div className='flex-col-start max-w-[700px]'>  
                         <div className='bg-primary pb-3.5 pr-1 rounded-sm mb-5'>
-                            <div className='flex-row-between gap-2 pl-6 pr-3 text-[3rem] font-bold border-1 rounded-sm bg-background -ml-3 -mt-5'> 
+                            <div className='flex-row-between gap-2 pl-8 pr-5 text-[3rem] font-semibold border-1 rounded-sm bg-background -ml-3 -mt-5'> 
                                 {`Welcome Back ${user.f_name}`} 
                                 <DogInHouseSvg className={"fill-foreground stroke-foreground"} style={{width:155, height:155}} />
                             </div>

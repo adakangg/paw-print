@@ -16,6 +16,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { EllipsisVertical, Plus, Trash } from 'lucide-react';  
 import { toast } from 'sonner';
 import { Tables } from '@/utils/supabase/types';
+import { Avatar } from '@/components/ui/avatar';
 
 export default function Pets() {          
     const { data: user, isError: userError } = useUserProfile()        
@@ -104,7 +105,11 @@ export default function Pets() {
                                                     onClick={(e) => e.preventDefault()}  
                                                 /> 
                                             </div> 
-                                            <Image src={pet.img_path ?? '/default_avatars/pawprint.png'} alt='pet' width={90} height={90} />
+                                            <Avatar 
+                                                src={pet.img_path ?? '/default_avatars/pawprint.png'}
+                                                alt='pet' 
+                                                className='w-28 h-28'
+                                            /> 
                                             <p className='text-[1.3rem] font-medium mt-4'> {pet.name} </p>  
                                         </Card>
                                     </Link>

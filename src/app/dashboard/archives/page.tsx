@@ -311,7 +311,7 @@ export default function Archives() {
       }
       { !isLoading && open && archives &&
         <>
-          { archives?.folders?.length > 0 && archives?.files?.length > 0 ?
+          { archives?.folders?.length > 0 || archives?.files?.length > 0 ?
             <div className='flex-col-start gap-20 px-2'>
               {/* Folders */}
               <div className='flex-col-start gap-4'>
@@ -329,15 +329,17 @@ export default function Archives() {
                       }
                     </BreadcrumbList>
                   </Breadcrumb> 
-                  <Button 
-                    onClick={() => {
-                      setFormData({ type: 'Folder', selected: null }) 
-                      setFormOpen(true)
-                    }}
-                  >  
-                    <Folder /> 
-                    Add Folder
-                  </Button>
+                  { !open.folder && 
+                    <Button 
+                      onClick={() => {
+                        setFormData({ type: 'Folder', selected: null }) 
+                        setFormOpen(true)
+                      }}
+                    >  
+                      <Folder /> 
+                      Add Folder
+                    </Button>
+                  }
                 </div>
 
                 <div className='flex-row-start flex-wrap gap-10'>
@@ -449,10 +451,10 @@ export default function Archives() {
               </div> 
             </div>
             :
-            <div className='mt-10'>
+            <div className='mt-10 mx-auto'>
               <BorderedImageText
                 img={<Image src='/cat_folder.png' alt='folder' width={330} height={330} />}
-                className='bg-blue-primary'
+                className='bg-primary'
                 title='No Files Found'
                 subtitle='Click here to add a new file' 
                 onClick={() => {

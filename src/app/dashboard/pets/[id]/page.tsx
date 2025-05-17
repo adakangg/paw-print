@@ -1,6 +1,5 @@
 'use client'  
-import React, { use } from 'react'; 
-import Image from 'next/image';
+import React, { use } from 'react';  
 import Link from 'next/link'
 import { redirect } from 'next/navigation';
 import { usePets, useUserProfile } from '@/hooks/useUser';
@@ -30,6 +29,8 @@ import { Activity, AlertCircle, Bone, Bookmark, Calendar, ChevronDown, Edit, Map
 import { cn } from '@/lib/utils';   
 import { COLOR_OPTIONS, SPECIES_ICONS } from '@/constants'; 
 import { Tables } from '@/utils/supabase/types';
+import { replaceCharsRegex } from '@/utils/supabase/helpers';
+import { Avatar } from '@/components/ui/avatar';
 type PetDataType = Tables<'conditions'> | Tables<'medications'> | Tables<'nutrition'> | Tables<'procedures'> | Tables<'allergies'>[] | Tables<'pets'>
 
 
@@ -49,7 +50,7 @@ function ProfileDetail({
             <div className='bg-primary p-[7px] rounded-full text-white'>
                 {React.cloneElement(icon, { width: 20, height: 20 })} 
             </div>
-            <span className='text-[0.73rem]'>{title}</span>
+            <span className='text-[0.73rem] mt-1'>{title}</span>
             <div className='text-[0.9rem] font-medium'>{value}</div>
         </div> 
     )
@@ -265,15 +266,13 @@ export default function Pets({ params }: { params: Promise<{ id: string }> }) {
                                         icon={<PawPrint width={22} height={22} /> }
                                         title='Profile'
                                         onEditClick={() => openForm('Profile', selectedPet)}
-                                    /> 
-                                    <Image  
+                                    />  
+                                    <Avatar 
                                         src={selectedPet.img_path ?? '/default_avatars/pawprint.png'}
-                                        alt='pet profile picture'
-                                        width={120}
-                                        height={120} 
-                                        className='my-4'
-                                    />    
-                                    <p className='text-[1.5rem] font-semibold'>{selectedPet.name}</p>
+                                        alt='pet' 
+                                        className='w-40 h-40'
+                                    />
+                                    <p className='text-[1.8rem] font-semibold -mt-1'>{selectedPet.name}</p>
 
                                     <div className='grid grid-cols-3 gap-y-5 w-full mb-16 mt-8'>
                                         <ProfileDetail
@@ -294,9 +293,9 @@ export default function Pets({ params }: { params: Promise<{ id: string }> }) {
                                             className='-mr-5'
                                         />    
                                         <ProfileDetail
-                                            title='Species'
+                                            title='Species' 
                                             icon={getSpeciesIcon(selectedPet.species)}
-                                            value={ selectedPet.species }  
+                                            value={replaceCharsRegex(selectedPet.species, "_", " ")}
                                             className='-ml-5'
                                         />   
                                         <ProfileDetail

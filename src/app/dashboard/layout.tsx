@@ -38,7 +38,7 @@ export default function DashboardLayout({ children } : { children: React.ReactNo
 
     return (
         <div className="flex-col-center">    
-            <div className="flex-row-between bg-topbar px-5 py-3" >
+            <div className="fixed z-10 top-0 left-0 flex-row-between bg-topbar px-5 py-3" >
                 <div className="flex-row-center gap-2">
                     <Image src='/paw-print.png' alt="pawprint" width={28} height={28} /> 
                     <span className="max-[650px]:hidden text-[1.5rem] text-white font-semibold">pawprint</span>
@@ -110,8 +110,10 @@ export default function DashboardLayout({ children } : { children: React.ReactNo
                     </DropdownMenu>
                     
                 </div> 
-            </div> 
-            {children}  
+            </div>  
+            <div className="w-full mt-15">
+                {children}  
+            </div>
         </div>
     )
 }

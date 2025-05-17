@@ -22,6 +22,12 @@ function FeatureCard({ icon, title, text }: { icon: React.ReactNode; title: stri
   )
 }
 
+function PetIcon({ src, alt }: { src: string; alt: string }) {
+  return (
+    <Image src={src} alt={alt} width={48} height={48} className='bg-white rounded-full p-1'/> 
+  )
+}
+
 export default function Home() { 
   const router = useRouter();
   const { theme, setTheme } = useTheme()  
@@ -29,24 +35,24 @@ export default function Home() {
 
   return (
     <div className='flex-col-center pb-8'>
-      <div className="flex-row-between bg-topbar px-5 py-3">
-          <div className="flex-row-center gap-2">
-            <Image src='/paw-print.png' alt="pawprint" width={28} height={28} /> 
-            <span className="text-[1.5rem] text-white font-semibold">pawprint</span>   
-          </div>
+      <div className="fixed z-10 top-0 left-0 flex-row-between bg-topbar px-5 py-3">
+        <div className="flex-row-center gap-2">
+          <Image src='/paw-print.png' alt="pawprint" width={28} height={28} /> 
+          <span className="text-[1.5rem] text-white font-semibold">pawprint</span>   
+        </div>
 
-          <div className='flex-row-center w-fit'>
-            <Button variant="outline" size="icon" onClick={toggleTheme} className='border-muted-background mr-3'>
-              <SunMoon className="h-[2rem] w-[2rem] text-muted-foreground"/>
-            </Button> 
-            <Button onClick={() => router.push("/auth/login")}>
-              Sign In 
-            <LogIn /> 
+        <div className='flex-row-center w-fit'>
+          <Button variant="outline" size="icon" onClick={toggleTheme} className='border-muted-background mr-3'>
+            <SunMoon className="h-[2rem] w-[2rem] text-muted-foreground"/>
           </Button> 
-          </div> 
+          <Button onClick={() => router.push("/auth/login")}>
+            Sign In 
+          <LogIn /> 
+        </Button> 
+        </div> 
       </div> 
       
-      <div className='flex-col-center min-[900px]:flex-row-start gap-10 p-10 pb-[7px] dotted-border'> 
+      <div className='flex-col-center min-[900px]:flex-row-start gap-10 mt-18 p-10 pb-[7px] dotted-border'> 
         <div className='flex-col-start min-[900px]:w-1/2 min-[900px]:pr-10'> 
           <div className='flex-row-between mb-4 text-[3.3rem] font-bold leading-15 underline pr-6'>  
             Healthier Pets <br/> Happier Days 
@@ -57,7 +63,7 @@ export default function Home() {
           <div className='flex-row-start gap-2'> 
             <Button onClick={() => router.push('/auth/login')}> Get Started </Button>   
             <Button variant='outline' onClick={() => router.push('/auth/login?demo=true')}> 
-                Try Demo 
+              Try Demo 
               </Button>    
           </div> 
 
@@ -71,14 +77,14 @@ export default function Home() {
             </div> 
 
             <div className='flex-row-center flex-wrap gap-x-8 gap-y-3 mt-4'> 
-              <Image src='/fishbowl.png' alt='fish' width={46} height={46} className='bg-white rounded-full p-1'/> 
-              <Image src='/dog.png' alt='dog' width={46} height={46} className='bg-white rounded-full p-1'/> 
-              <Image src='/pigeon.png' alt='pigeon' width={46} height={46} className='bg-white rounded-full p-1'/>
-              <Image src='/hamster.png' alt='hamster' width={46} height={46} className='bg-white rounded-full p-1'/>
-              <Image src='/turtle.png' alt='turtle' width={46} height={46} className='bg-white rounded-full p-1'/>
-              <Image src='/cat_sleeping.png' alt='cat' width={48} height={48} className='bg-white rounded-full p-1'/>  
+              <PetIcon src='/fishbowl.png' alt='fish' />
+              <PetIcon src='/dog.png' alt='dog' />
+              <PetIcon src='/pigeon.png' alt='pigeon' />
+              <PetIcon src='/hamster.png' alt='hamster' />
+              <PetIcon src='/turtle.png' alt='turtle' />
+              <PetIcon src='/cat_sleeping.png' alt='cat' />
             </div> 
-        </div>
+          </div>
         </div> 
         <BorderedImage img={<Image src='/work.png' alt='cat' width={330} height={330}/>}/>  
       </div>      
