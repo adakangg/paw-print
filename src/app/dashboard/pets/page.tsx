@@ -13,7 +13,7 @@ import { FormDialog } from '@/components/ui/dialog';
 import PetForm from '@/components/forms/pet-form'; 
 import { DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { Skeleton } from '@/components/ui/skeleton';
-import { EllipsisVertical, Plus, Trash } from 'lucide-react';  
+import { EllipsisVertical, PawPrint, Plus, Trash } from 'lucide-react';  
 import { toast } from 'sonner';
 import { Tables } from '@/utils/supabase/types';
 import { Avatar } from '@/components/ui/avatar';
@@ -65,16 +65,16 @@ export default function Pets() {
             { !isLoading && 
                 <>
                     { (pets && pets.length > 0) || (matchingResults && matchingResults.length > 0) ?
-                        <div className="flex-col-center gap-6"> 
-                            <p className='w-fit px-4 text-[2.8rem] font-medium bg-foreground text-background rounded-lg'>
-                                View All Pets   
-                            </p> 
-                            <div className='flex-row-center gap-3'>
+                        <div className="flex-col-center gap-6 px-10"> 
+                            <div className="flex-row-center gap-2 bg-foreground text-background w-fit px-3 text-[2.8rem] font-semibold rounded-md">   
+                                View All Pets
+                            </div>   
+                            <div className='flex-row-center justify-center gap-3'>
                                 <Input 
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     placeholder="Search by pet name"
-                                    className='min-sm:w-85'
+                                    className='min-[900px]:w-88'
                                 /> 
                                 <Button onClick={() => setFormOpen(true)}>  
                                     <Plus />
@@ -82,10 +82,10 @@ export default function Pets() {
                                 </Button>
                             </div> 
 
-                            <div className="grid grid-cols-2 gap-10 w-full mt-5"> 
+                            <div className="grid  min-[700px]:grid-cols-2 min-[900px]:grid-cols-3 gap-10 w-full mt-5"> 
                                 { matchingResults?.map((pet) => 
                                     <Link key={pet.id} href={{ pathname: `/dashboard/pets/${pet.id}` }}>
-                                        <Card className='flex-col-center pt-2 pb-4 hover:border-primary rounded-xl'>
+                                        <Card className='flex-col-center pt-2 pb-4 hover:border-primary rounded-xl min-w-[14rem]'>
                                             <div className='flex w-full justify-end mb-3'>
                                                 <IconButton
                                                     icon={ <EllipsisVertical width={18} height={18} className='text-muted-foreground' /> }

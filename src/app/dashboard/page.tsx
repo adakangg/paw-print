@@ -37,7 +37,7 @@ function Section({
     className?: string
   }) {    
     return (  
-        <div className={cn('flex-col-start rounded-lg h-full', className)}>
+        <div className={cn('flex-col-start rounded-lg w-full h-fit', className)}>
             <div className='flex-row-between dotted-border pb-3 mb-2'>
                 <span className={`w-fit px-2 text-[1.2rem] font-medium ${color}`}>
                     {title}
@@ -68,9 +68,9 @@ function SectionListItem({
   }) {    
     return ( 
         <Link key={id ?? text} href={{ pathname: link, ...(id && { query: { id: id } })}}>
-            <div className='flex-row-center gap-2'>
+            <div className='flex-row-start gap-2'>
                 {icon}    
-                <p className={`text-[1rem] border-b-separator px-1 ${color} hover:cursor-pointer`}>
+                <p className={`text-[1rem] border-b-separator px-1 ${color} hover:cursor-pointer text-wrap`}>
                     {text}
                 </p> 
             </div>
@@ -177,7 +177,7 @@ function ApptsList({
                             } 
                         </div>  
                         { showDate && appt.datetime &&
-                            <div className='flex-row-center gap-1 text-[0.75rem] font-medium'>
+                            <div className='flex-row-center gap-1 text-[0.75rem] font-medium mb-0.5'>
                                 <CalendarIcon width={13} height={13} />
                                 { format(appt.datetime, 'PPP') }
                             </div>
@@ -230,8 +230,14 @@ function EmptyState({ icon }: { icon: React.ReactElement }) {
 
 function getSpeciesIcon(species: string, size?: number | undefined) {
     const icon = SPECIES_ICONS.get(species)
-    if (icon) return React.cloneElement(icon, { width: size ?? 20, height: size ?? 20 })
-    return <PawPrint width={20} height={20} />
+    if (icon) {
+        return React.cloneElement(icon, { 
+            width: size ?? 20, 
+            height: size ?? 20,
+            className: 'mt-1 shrink-0'
+        })
+    }
+    return <PawPrint width={20} height={20} className='shrink-0 mt-1' />
 }
 
 export default function Dashboard() {     
@@ -306,7 +312,7 @@ export default function Dashboard() {
                                             icon={ <ArrowUpRight width={16} height={16} className='text-muted-foreground2' /> }
                                             onClick={() => { redirect('/dashboard/pets', RedirectType.push) }}
                                             tooltipContent={
-                                                <TooltipContent className='bg-orange-primary' arrowClassName='bg-orange-primary fill-orange-primary'>
+                                                <TooltipContent className='bg-primary' arrowClassName='bg-primary fill-primary'>
                                                     View All
                                                 </TooltipContent>
                                             }
@@ -339,7 +345,7 @@ export default function Dashboard() {
                                             icon={ <ArrowUpRight width={16} height={16} className='text-muted-foreground2' /> }
                                             onClick={() => redirect('/dashboard/archives', RedirectType.push)}
                                             tooltipContent={
-                                                <TooltipContent className='bg-pink-primary' arrowClassName='bg-pink-primary fill-pink-primary'>
+                                                <TooltipContent className='bg-primary' arrowClassName='bg-primary fill-primary'>
                                                     View All
                                                 </TooltipContent>
                                             }
@@ -354,7 +360,7 @@ export default function Dashboard() {
                                                     id={folder.id}
                                                     key={folder.id}
                                                     color='hover:bg-pink-primary'
-                                                    icon={<Folder width={16} height={16}/>}
+                                                    icon={<Folder width={16} height={16} className='shrink-0 mt-1'/>}
                                                     link='/dashboard/archives'
                                                 />
                                             )}
@@ -363,7 +369,7 @@ export default function Dashboard() {
                                                     text={file.name} 
                                                     key={file.id} 
                                                     color='hover:bg-pink-primary'
-                                                    icon={<Paperclip width={16} height={16}/>}
+                                                    icon={<Paperclip width={16} height={16} className='shrink-0 mt-1'/>}
                                                     link='/dashboard/archives'
                                                 />
                                             )}
@@ -382,7 +388,7 @@ export default function Dashboard() {
                                         icon={ <Plus width={16} height={16} className='text-muted-foreground2' /> }
                                         onClick={() => openForm('Personnel', null)}
                                         tooltipContent={
-                                            <TooltipContent className='bg-gray-primary' arrowClassName='bg-gray-primary fill-gray-primary'>
+                                            <TooltipContent className='bg-primary' arrowClassName='bg-primary fill-primary'>
                                                 Add Entry
                                             </TooltipContent>
                                         }

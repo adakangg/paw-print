@@ -31,8 +31,6 @@ export const PERSONNEL_ICONS = new Map<string, React.ReactElement>([
     ['other', <PawprintSvg className={"fill-black stroke-black"} style={{width:35, height:35}} />],  
 ]);
 
-export const CHIP_COLORS = ["bg-primary-muted", "bg-orange-primary", "bg-gray-primary"]
-
 export const COLOR_OPTIONS = [
     {
         bgPrimary: "bg-blue-primary",

@@ -97,6 +97,7 @@ export default function DashboardLayout({ children } : { children: React.ReactNo
                         <DropdownMenuContent className="w-fit border-muted-background mr-2">   
                             <DropdownMenuLabel>
                                 {`${user?.f_name} ${user?.l_name ?? ""}`}
+                                <br/>
                                 {user?.email}
                             </DropdownMenuLabel>
                             <DropdownMenuSeparator />

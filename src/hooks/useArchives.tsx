@@ -1,6 +1,6 @@
 import useSupabaseBrowser from '@/utils/supabase/clients';  
 import { useQuery } from "@tanstack/react-query";  
-import { CHIP_COLORS } from "@/constants" 
+import { COLOR_OPTIONS } from "@/constants" 
 import { Tables, TypedSupabaseClient } from '@/utils/supabase/types';
 
 async function fetchFolders(client: TypedSupabaseClient, userId: string) {   
@@ -38,8 +38,9 @@ export function useUserArchives(userId?: string | undefined | null) {
 
       if (folders && files) {
         const fmtedFolders = folders.map((folder, index) => ({
-          ...folder,
-          color: CHIP_COLORS[index % CHIP_COLORS.length],
+          ...folder, 
+          color: COLOR_OPTIONS[index % COLOR_OPTIONS.length].bgMuted,
+
           filesCount: (files.filter(file => file.folder_id === folder.id)).length
         }));
 

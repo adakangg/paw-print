@@ -181,10 +181,12 @@ function FolderContainer({
       </div>
 
       <Image src='/folder.png' alt='folder' width={65} height={65} /> 
-      <div className='flex-row-between px-1 mt-2'> 
-        <p className='text-[1.1rem] font-semibold'>{folder.name}</p> 
+      <div className='flex-row-between px-1 mt-2 gap-1 w-full'> 
+        <p className='text-[1.1rem] font-semibold overflow-hidden text-ellipsis whitespace-nowrap'>
+          {folder.name}
+        </p> 
         { folder.filesCount > 0 &&  
-          <Badge className={`${folder.color} text-[0.78rem]`}>
+          <Badge className={`${folder.color} text-[0.78rem] py-0.5 px-2.5`}>
             {`${folder.filesCount} files`}
           </Badge> 
         }
@@ -297,7 +299,7 @@ export default function Archives() {
     <div className="flex-col-start px-10 min-lg:w-250 gap-10 mx-auto my-6">  
       <div className="flex-row-center gap-2 bg-foreground text-background w-fit px-3 rounded-md">  
         <Package width={47} height={47} />
-        <p className='text-[3rem] font-bold'>Archives</p>
+        <p className='text-[2.8rem] font-semibold'>Archives</p>
       </div>  
       { isLoading && 
         <div className="flex-col-start gap-5 mt-10">
@@ -361,7 +363,7 @@ export default function Archives() {
               {/* Files */}
               <div className="flex-col-start w-full gap-4"> 
                 <div className='flex-row-between'>
-                  <div className='flex-row-center gap-1.5 text-[1.8rem] font-bold'>
+                  <div className='flex-row-center gap-1.5 text-[1.4rem] font-semibold'>
                     <File width={25} height={25} /> 
                     {`${open.folder?.name ?? ''} Documents `}
                   </div>
